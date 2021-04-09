@@ -1,7 +1,7 @@
 _base_ = [
-    "../_base_/models/retinanet_r50_fpn.py.py",
-    "../_base_/schedules/schedule_1x.py",
-    "../_base_/default_runtime.py",
+    "../../configs/_base_/models/retinanet_r50_fpn.py",
+    "../../configs/_base_/schedules/schedule_1x.py",
+    "../../configs/_base_/default_runtime.py",
 ]
 
 dataset_type = "CustomDataset"
@@ -62,25 +62,28 @@ data = dict(
     workers_per_gpu=2,
     train=dict(
         type=dataset_type,
+        ann_file="bbox_annotation_train.pkl",
+        pipeline=train_pipeline,
         classes=classes,
         data_root=data_root,
-        ann_file="bbox_annotation_train.pkl",
         img_prefix="images/",
         filter_empty_gt=False,
     ),
     val=dict(
         type=dataset_type,
+        ann_file="bbox_annotation_test.pkl",
+        pipeline=test_pipeline,
         classes=classes,
         data_root=data_root,
-        ann_file="bbox_annotation_test.pkl",
         img_prefix="images/",
         filter_empty_gt=False,
     ),
     test=dict(
         type=dataset_type,
+        ann_file="bbox_annotation_test.pkl",
+        pipeline=test_pipeline,
         classes=classes,
         data_root=data_root,
-        ann_file="bbox_annotation_test.pkl",
         img_prefix="images/",
         filter_empty_gt=False,
     ),
