@@ -14,13 +14,10 @@ classes = (
     "breast",
     "crown",
     "forehead",
-    "left eye",
-    "left leg",
-    "left wing",
+    "eye",
+    "leg",
+    "wing",
     "nape",
-    "right eye",
-    "right leg",
-    "right wing",
     "tail",
     "throat",
 )
@@ -62,7 +59,7 @@ data = dict(
     workers_per_gpu=2,
     train=dict(
         type=dataset_type,
-        ann_file="bbox_annotation_train_15.pkl",
+        ann_file="bbox_annotation_train_12.pkl",
         pipeline=train_pipeline,
         classes=classes,
         data_root=data_root,
@@ -71,7 +68,7 @@ data = dict(
     ),
     val=dict(
         type=dataset_type,
-        ann_file="bbox_annotation_test_15.pkl",
+        ann_file="bbox_annotation_test_12.pkl",
         pipeline=test_pipeline,
         classes=classes,
         data_root=data_root,
@@ -80,7 +77,7 @@ data = dict(
     ),
     test=dict(
         type=dataset_type,
-        ann_file="bbox_annotation_test_15.pkl",
+        ann_file="bbox_annotation_test_12.pkl",
         pipeline=test_pipeline,
         classes=classes,
         data_root=data_root,
@@ -91,7 +88,7 @@ data = dict(
 
 evaluation = dict(interval=1, metric="mAP")
 
-model = dict(pretrained=None, bbox_head=dict(num_classes=15))
+model = dict(pretrained=None, bbox_head=dict(num_classes=12))
 
 load_from = "workspace/checkpoints/retinanet_r50_fpn_1x_coco_20200130-c2398f9e.pth"
 
