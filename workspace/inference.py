@@ -1,12 +1,17 @@
+# %%
 import argparse
 from mmdet.apis import init_detector, inference_detector
+
+CONFIG = "configs/retinanet_cub_12.py"
+CHECKPOINT = "logs/0410_01/latest.pth"
+INPUT = "demo/lanius.jpg"
 
 
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument("config", type=str, required=True)
-    parser.add_argument("checkpoint", type=str, required=True)
-    parser.add_argument("input", type=str, required=True)
+    parser.add_argument("config", type=str, default=CONFIG)
+    parser.add_argument("checkpoint", type=str, default=CHECKPOINT)
+    parser.add_argument("input", type=str, default=INPUT)
     parser.add_argument("--out_file", type=str, default=None)
     parser.add_argument("--score_thr", type=float, default=0.5)
     args = parser.parse_args()
@@ -26,6 +31,7 @@ def main():
         img,
         result,
         score_thr=args.score_thr,
+        show=True,
         out_file=args.out_file,
         bbox_color=(72, 101, 241),
         text_color=(72, 101, 241),
